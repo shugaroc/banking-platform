@@ -1,27 +1,64 @@
-# BankingPlatform
+# Banking Platform
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.12.
+A modern banking platform built with Angular and Supabase.
 
-## Development server
+## Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Node.js (v20.x or later)
+- npm (v10.x or later)
+- Angular CLI (v17.x)
 
-## Code scaffolding
+## Setup
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Install dependencies:
+```bash
+npm install
+```
 
-## Build
+2. Set up environment variables:
+- Copy `src/environments/environment.template.ts` to `src/environments/environment.ts`
+- Add your Supabase credentials
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Development
 
-## Running unit tests
+- Run development server: `npm start`
+- Run tests: `npm test`
+- Run linting: `npm run lint`
+- Format code: `npm run format`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Building
 
-## Running end-to-end tests
+```bash
+npm run build
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## CI/CD
 
-## Further help
+The project uses GitHub Actions for CI/CD pipeline, which includes:
+- Linting
+- Building
+- Testing
+- Artifact generation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── core/          # Singleton services, guards
+│   ├── features/      # Feature modules
+│   └── shared/        # Shared components, pipes, directives
+├── assets/            # Static assets
+└── environments/      # Environment configurations
+```
+
+## Contributing
+
+1. Create a feature branch from `main`
+2. Make your changes
+3. Run tests and ensure linting passes
+4. Submit a pull request
+
+## License
+
+[MIT License](LICENSE)
