@@ -5,7 +5,7 @@ import {
   AuthChangeEvent,
   Session,
   User,
-  PostgrestClient,
+  AuthResponse
 } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
 
@@ -19,24 +19,33 @@ export class SupabaseService {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey);
   }
 
-  get auth(): {
-    onAuthStateChange: (callback: (event: AuthChangeEvent, session: Session | null) => void) => {
-      data: { subscription: { unsubscribe: () => void } };
-    };
-    signUp: (credentials: {
-      email: string;
-      password: string;
-    }) => Promise<{ user: User | null; error: Error | null }>;
-    signIn: (credentials: {
-      email: string;
-      password: string;
-    }) => Promise<{ user: User | null; error: Error | null }>;
-    signOut: () => Promise<{ error: Error | null }>;
-  } {
+  get auth() {
     return this.supabase.auth;
   }
 
-  get db(): PostgrestClient {
+  get db() {
     return this.supabase;
+  }
+
+  async signUp(email: string, password: string): Promise<AuthResponse> {
+    return await this.auth.signUp({
+      email,
+      password
+    });
+  }
+
+  async signIn(email: string, password: string): Promise<AuthResponse> {
+    return await this.auth.signInWithPassword({
+      email,
+      password
+    });
+  }
+
+  async signOut(): Promise<{ error: Error | null }> {
+    return await this.auth.signOut();
+  }
+
+  onAuthStateChange(callback: (event: AuthChangeEvent, session: Session | null) => void) {
+    return this.auth.onAuthStateChange(callback);
   }
 }
