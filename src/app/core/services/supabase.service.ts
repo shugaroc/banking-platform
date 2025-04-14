@@ -7,7 +7,7 @@ import {
   User,
   AuthResponse
 } from '@supabase/supabase-js';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',

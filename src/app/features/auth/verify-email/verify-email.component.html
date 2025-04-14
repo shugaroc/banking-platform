@@ -1,0 +1,40 @@
+<div class="auth-container">
+  <mat-card class="auth-card">
+    <mat-card-header>
+      <mat-card-title>Email Verification</mat-card-title>
+      <mat-card-subtitle *ngIf="!successMessage">
+        Please verify your email address to continue
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="verification-content">
+        <div *ngIf="isLoading" class="loading-indicator">
+          <mat-spinner diameter="40"></mat-spinner>
+          <p>Verifying your email...</p>
+        </div>
+
+        <div *ngIf="successMessage" class="success-message">
+          <mat-icon>check_circle</mat-icon>
+          <p>{{ successMessage }}</p>
+        </div>
+
+        <div *ngIf="errorMessage" class="error-message">
+          <mat-icon>error</mat-icon>
+          <p>{{ errorMessage }}</p>
+        </div>
+
+        <div *ngIf="!isLoading && !successMessage" class="resend-section">
+          <p>Haven't received the verification email?</p>
+          <button mat-raised-button color="primary" (click)="resendVerification()" [disabled]="isLoading">
+            Resend Verification Email
+          </button>
+        </div>
+
+        <div class="form-footer">
+          <a mat-button routerLink="/auth/login">Back to Login</a>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
